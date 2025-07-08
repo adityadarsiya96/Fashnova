@@ -1,15 +1,16 @@
-const mongoose = require("mongoose")
-const config = require("config")
-const dbgr = require("debug")("development:mongoose")
+const mongoose = require("mongoose");
+require("dotenv").config();
+const dbgr = require("debug")("development:mongoose");
 
-mongoose.connect(`${config.get("MONGODB_URI")}/fashnova`)
-.then(function(){
-    dbgr("Connected")
 
-})
-.catch(function(err){
-    dbgr(err)
+const uri = process.env.MONGODB_URI;
 
-})
+if (!uri) {
+  throw new Error(" MONGODB_URI is not defined. Check your .env or environment settings.");
+}
 
+
+mongoose.connect(uri)
+  .then(() => dbgr(" MongoDB connected"))
+  .catch((err) => dbgr(" MongoDB connection error:", err));
 module.exports = mongoose.connection;
