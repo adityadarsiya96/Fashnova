@@ -2,18 +2,16 @@ const mongoose =require("mongoose")
 
 
 const ownerSchema = new mongoose.Schema({
-    fullname:{
-        type:String,
-        minLength:3,
-        trim:true,
-    },
-    product:{
-        type:Array,
-        default:[],
-    },
+    fullname:String,
     gstin:String,
+    email:String,
+    password:String,
+    products:{
+        type:Array,
+        default:[]
+    }, 
 
-    contact:Number,
+
     picture:String
 
 })

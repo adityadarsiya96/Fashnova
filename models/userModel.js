@@ -2,19 +2,21 @@ const mongoose =require("mongoose")
 
 
 const userSchema = new mongoose.Schema({
-    fullname:String,
+    username:String,
     email:String,
-    cart:{
-        type:Array,
+    cart:[{
+        type:mongoose.Schema.Types.ObjectId,
         default:[]
-    },
-    isadmin:Boolean,
+    }],
     orders:{
         type:Array,
-        default:[]
+        ref:"product"
     },
     contact:Number,
-    picture:String
+    picture:String,
+    password:String,
+    address:String
+
 
 })
 
